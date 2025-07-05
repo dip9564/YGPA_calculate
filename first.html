@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>YGPA Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+    }
+    #result {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>YGPA Calculator</h1>
+
+  <form id="ygpaForm">
+    <label for="cp1">Sem 1 Credit Points:</label>
+    <input type="number" id="cp1" required>
+
+    <label for="c1">Sem 1 Total Credits:</label>
+    <input type="number" id="c1" required>
+
+    <label for="cp2">Sem 2 Credit Points:</label>
+    <input type="number" id="cp2" required>
+
+    <label for="c2">Sem 2 Total Credits:</label>
+    <input type="number" id="c2" required>
+
+    <button type="submit">Calculate YGPA</button>
+  </form>
+
+  <p id="result">YGPA: —</p>
+
+  <script>
+    document.getElementById('ygpaForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const cp1 = parseFloat(document.getElementById('cp1').value);
+      const c1 = parseFloat(document.getElementById('c1').value);
+      const cp2 = parseFloat(document.getElementById('cp2').value);
+      const c2 = parseFloat(document.getElementById('c2').value);
+
+      if (isNaN(cp1) || isNaN(c1) || isNaN(cp2) || isNaN(c2) || (c1 + c2) === 0) {
+        document.getElementById('result').textContent = "Please enter valid numbers.";
+        return;
+      }
+
+      const ygpa = (cp1 + cp2) / (c1 + c2);
+      document.getElementById('result').textContent = "YGPA: " + ygpa.toFixed(2);
+    });
+  </script>
+
+</body>
+</html>
